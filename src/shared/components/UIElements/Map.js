@@ -1,28 +1,25 @@
 import React, { useRef, useEffect } from "react";
+
 import "./Map.css";
 
-export default function Map(props) {
-  {
-    /* useRef() can be used to create references, which  */
-  }
+const Map = (props) => {
   const mapRef = useRef();
 
   const { center, zoom } = props;
 
-  {
-    /* useEffect() allows us to register logic, a function that should be execute when a certain input changes */
-  }
   useEffect(() => {
-    const map = new window.google.maps.Map(mapRef.current, {
-      center: center,
-      zoom: zoom,
+    new window.ol.Map({
+      target: mapRef.current.id,
+      layers: [
+        new window.ol.layer.Tile({
+          source: new window.ol.source.OSM(),
+        }),
+      ],
+      view: new window.ol.View({
+        center: window.ol.proj.fromLonLat([center.lng, center.lat]),
+        zoom: zoom,
+      }),
     });
-
-    new window.google.maps.Marker({ position: props.center, map: map });
-
-    {
-      /* This map now need a dom node where it should be rendered. To solve this we use useRef() hook*/
-    }
   }, [center, zoom]);
 
   return (
@@ -30,6 +27,9 @@ export default function Map(props) {
       ref={mapRef}
       className={`map ${props.className}`}
       style={props.style}
+      id="map"
     ></div>
   );
-}
+};
+
+export default Map;
