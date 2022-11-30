@@ -1,5 +1,5 @@
 import React, { useCallback, useReducer } from "react";
-import "./NewPlace.css";
+import "./PlaceForm.css";
 import Input from "../../shared/components/FormComponents/Input";
 import {
   VALIDATOR_MINLENGTH,
@@ -40,6 +40,10 @@ const NewPlace = () => {
         isValid: false,
       },
       description: {
+        value: "",
+        isValid: false,
+      },
+      address: {
         value: "",
         isValid: false,
       },

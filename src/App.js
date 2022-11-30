@@ -9,6 +9,7 @@ import NewPlace from "./places/pages/NewPlace";
 import Users from "./user/pages/Users";
 import UserPlaces from "./places/pages/UserPlaces";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
+import UpdatePlace from "./places/pages/UpdatePlace";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           {/* route with dynamic segment, /: signals the router */}
           <Route exact path="/:userId/places" element={<UserPlaces />} />
           <Route exact path="/places/new" element={<NewPlace />} />
+          <Route exact path="/places/:placeId" element={<UpdatePlace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
